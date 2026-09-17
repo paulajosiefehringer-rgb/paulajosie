@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UGC Content – Paula Josie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f4f1;
+    --text: #201f1c;
+    --muted: #726d63;
+    --accent: #201f1c;
+    --line: #e7e4dd;
+    --card-bg: #ffffff;
+    --max-width: 1400px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  h1, h2, .display, .logo {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text);
+    font-weight: 600;
+    border-bottom: 1px solid var(--text);
+    display: inline-block;
+    padding-bottom: 3px;
+  }
+
+  header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 32px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-size: 18px;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .nav-links a:hover { color: var(--muted); }
+
+  .social-row {
+    display: flex;
+    gap: 20px;
+  }
+
+  .social-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: var(--text);
+    transition: stroke 0.2s ease;
+  }
+
+  .social-icon:hover svg { stroke: var(--muted); }
+
+  section {
+    padding: 80px 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    margin-top: 10px;
+    letter-spacing: 0.005em;
+  }
+
+  .model-head {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .model-head h2 {
+    margin-top: 0;
+    font-size: clamp(44px, 7vw, 72px);
+    letter-spacing: 0;
+  }
+
+  .view-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .view-link:hover { color: var(--muted); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .card {
+    background: var(--card-bg);
+    overflow: hidden;
+    display: block;
+  }
+
+  .card-thumb {
+    aspect-ratio: 4/5;
+    background: var(--bg-alt);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-thumb img,
+  .card-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-info {
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-info h4 {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .card-info span {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a:hover { color: var(--muted); }
+
+  footer {
+    padding: 36px 32px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  @media (max-width: 800px) {
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="index.html">Paula Josie</a>
+    <div class="nav-links">
+      <a href="portfolio.html">Modeling</a>
+      <a href="content.html">Content</a>
+      <a href="index.html#services">Kooperationen</a>
+      <a href="index.html#contact">Kontakt</a>
+    </div>
+    <div class="social-row">
+      <a class="social-icon" href="https://www.instagram.com/paula_josie_/" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a class="social-icon" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section style="border-top:none;">
+  <div class="section-inner">
+    <div class="model-head">
+      <h2>UGC Content</h2>
+      <a class="view-link" href="index.html#portfolio">← Zurück zur Startseite</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-01.jpg"><source src="videos/video-01.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Karli1</h4><span>Standort-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-02.jpg"><source src="videos/video-02.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Karli1</h4><span>Testimonial · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-04.jpg"><source src="videos/video-04.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Mulex</h4><span>Interior-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-05.jpg"><source src="videos/video-05.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Coway</h4><span>Produkt-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-07.jpg"><source src="videos/video-07.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Long4Lashes</h4><span>Produkt-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-08.jpg"><source src="videos/video-08.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Tante Anna Apartments</h4><span>Unterkunfts-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-09.jpg"><source src="videos/video-09.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Weleda</h4><span>Skincare-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-10.jpg"><source src="videos/video-10.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Just Mats</h4><span>Produkt-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-12.jpg"><source src="videos/video-12.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>OTTO</h4><span>Produkt-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-13.jpg"><source src="videos/video-13.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>SK Aesthetics</h4><span>Beauty-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-14.jpg"><source src="videos/video-14.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Tell Me Softly</h4><span>Buch-UGC · Reel</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-thumb"><video controls playsinline preload="metadata" poster="videos/poster-15.jpg"><source src="videos/video-15.mp4" type="video/mp4"></video></div>
+        <div class="card-info"><div><h4>Apacare</h4><span>Produkt-UGC · Reel</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Paula Josie — Alle Rechte vorbehalten.
+  <div class="footer-links">
+    <a href="index.html#impressum">Impressum</a>
+    <a href="index.html#datenschutz">Datenschutz</a>
+    <a href="https://www.instagram.com/paula_josie_/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.card').forEach(function (el) {
+    el.classList.add('fade-in');
+  });
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '200px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function (el) {
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

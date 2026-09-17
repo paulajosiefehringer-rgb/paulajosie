@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modeling Portfolio – Paula Josie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f4f1;
+    --text: #201f1c;
+    --muted: #726d63;
+    --accent: #201f1c;
+    --line: #e7e4dd;
+    --card-bg: #ffffff;
+    --max-width: 1400px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  h1, h2, .display, .logo {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text);
+    font-weight: 600;
+    border-bottom: 1px solid var(--text);
+    display: inline-block;
+    padding-bottom: 3px;
+  }
+
+  header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 32px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-size: 18px;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .nav-links a:hover { color: var(--muted); }
+
+  .social-row {
+    display: flex;
+    gap: 20px;
+  }
+
+  .social-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: var(--text);
+    transition: stroke 0.2s ease;
+  }
+
+  .social-icon:hover svg { stroke: var(--muted); }
+
+  section {
+    padding: 80px 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    margin-top: 10px;
+    letter-spacing: 0.005em;
+  }
+
+  .model-head {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .model-head h2 {
+    margin-top: 0;
+    font-size: clamp(44px, 7vw, 72px);
+    letter-spacing: 0;
+  }
+
+  .view-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .view-link:hover { color: var(--muted); }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 28px;
+    margin-bottom: 40px;
+  }
+
+  .filter-btn {
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .filter-btn:hover { color: var(--text); }
+
+  .filter-btn.active {
+    color: var(--text);
+    border-bottom-color: var(--text);
+  }
+
+  .grid {
+    columns: 2;
+    column-gap: 3px;
+    background: var(--line);
+  }
+
+  .card {
+    background: var(--card-bg);
+    overflow: hidden;
+    display: block;
+    break-inside: avoid;
+    margin-bottom: 3px;
+  }
+
+  .card-thumb {
+    background: var(--bg-alt);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a:hover { color: var(--muted); }
+
+  footer {
+    padding: 36px 32px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  @media (max-width: 800px) {
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .grid { columns: 1; }
+    .filter-bar { gap: 8px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="index.html">Paula Josie</a>
+    <div class="nav-links">
+      <a href="portfolio.html">Modeling</a>
+      <a href="content.html">Content</a>
+      <a href="index.html#services">Kooperationen</a>
+      <a href="index.html#contact">Kontakt</a>
+    </div>
+    <div class="social-row">
+      <a class="social-icon" href="https://www.instagram.com/paula_josie_/" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a class="social-icon" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section style="border-top:none;">
+  <div class="section-inner">
+    <div class="model-head">
+      <h2>Modeling Portfolio</h2>
+      <a class="view-link" href="index.html#modeling">← Zurück zur Startseite</a>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="editorial">Editorial</button>
+      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn" data-filter="beach">Beach &amp; Swimwear</button>
+      <button class="filter-btn" data-filter="fineart">Fine Art</button>
+      <button class="filter-btn" data-filter="lingerie">Lingerie</button>
+      <button class="filter-btn" data-filter="movement">Movement &amp; Yoga</button>
+      <button class="filter-btn" data-filter="bridal">Bridal</button>
+      <button class="filter-btn" data-filter="other">Andere</button>
+    </div>
+
+    <div class="grid" id="model-grid">
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-04.jpg" alt="Editorial-Portrait in schwarzer Spitze"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-06.jpg" alt="Beauty-Nahaufnahme"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-03.jpg" alt="Moody Portrait in Jeans-Corsage"></div>
+      </div>
+      <div class="card" data-cat="fineart">
+        <div class="card-thumb"><img src="model-09.jpg" alt="Schwarz-Weiß Fine-Art-Portrait"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-10.jpg" alt="Movement-Editorial in weißem Top und weiter Hose"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-02.jpg" alt="Bikini-Portrait an der Küste"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-01.jpg" alt="Dynamische Yoga-Pose auf einer Dachterrasse"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-07.jpg" alt="Studio-Shooting in Beige"></div>
+      </div>
+      <div class="card" data-cat="lingerie">
+        <div class="card-thumb"><img src="model-05.jpg" alt="Lingerie-Kampagne in Rot"></div>
+      </div>
+      <div class="card" data-cat="fineart">
+        <div class="card-thumb"><img src="model-08.jpg" alt="Fine-Art-Portrait am Fluss"></div>
+      </div>
+      <div class="card" data-cat="fineart">
+        <div class="card-thumb"><img src="model-13.jpg" alt="Fine-Art-Aufnahme am Meer"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-15.jpg" alt="Editorial am Meer im roten Rock"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-18.jpg" alt="Bewegte Swimwear-Aufnahme am Strand"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-22.jpg" alt="Editorial in weißer Spitze auf Felsen"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-26.jpg" alt="Portrait in Jeansjacke"></div>
+      </div>
+      <div class="card" data-cat="lingerie">
+        <div class="card-thumb"><img src="model-27.jpg" alt="Lingerie-Editorial im Schlafzimmer"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-28.jpg" alt="Editorial am Fenster mit Cowboystiefeln"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-29.jpg" alt="Bewegte Editorial-Aufnahme mit fliegenden Haaren"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-30.jpg" alt="Schwarz-Weiß Profil-Portrait"></div>
+      </div>
+      <div class="card" data-cat="lingerie">
+        <div class="card-thumb"><img src="model-31.jpg" alt="Lingerie-Editorial im Schlafzimmer"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-32.jpg" alt="Editorial am Fenster im Kleid"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-33.jpg" alt="Dynamische Studio-Pose"></div>
+      </div>
+      <div class="card" data-cat="lingerie">
+        <div class="card-thumb"><img src="model-34.jpg" alt="Lingerie-Editorial auf Loungesessel"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-35.jpg" alt="Editorial in transparentem Top"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-36.jpg" alt="Studio-Portrait sitzend"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-37.jpg" alt="Dynamische Editorial-Aufnahme im Studio"></div>
+      </div>
+      <div class="card" data-cat="lingerie">
+        <div class="card-thumb"><img src="model-38.jpg" alt="Lingerie-Editorial im Schlafzimmer"></div>
+      </div>
+      <div class="card" data-cat="bridal">
+        <div class="card-thumb"><img src="model-39.jpg" alt="Editorial-Portrait im weißen Federkleid"></div>
+      </div>
+      <div class="card" data-cat="bridal">
+        <div class="card-thumb"><img src="model-40.jpg" alt="Beauty-Nahaufnahme im weißen Federkleid"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-41.jpg" alt="Portrait mit Freundin, Wange an Wange"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-42.jpg" alt="Portrait mit Freundin im Bett"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-43.jpg" alt="Editorial am Strand auf einem Boot"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-44.jpg" alt="Editorial in Magenta am Gartenteich"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-45.jpg" alt="Beach-Editorial im schwarzen Badeanzug"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-46.jpg" alt="Fine-Art-Aufnahme an den Felsen"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-47.jpg" alt="Schwarz-Weiß Tanz-Editorial im Studio"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-48.jpg" alt="Editorial in der Düne"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-49.jpg" alt="Movement-Editorial in der Düne"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-50.jpg" alt="Liegende Editorial-Aufnahme in der Düne"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-51.jpg" alt="Editorial am Steg im schwarzen Badeanzug"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-52.jpg" alt="Verspielte Studio-Aufnahme im Sessel"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-53.jpg" alt="Editorial mit Weintrauben im Freien"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-54.jpg" alt="Dynamische Studio-Pose in roter Strumpfhose"></div>
+      </div>
+      <div class="card" data-cat="fineart">
+        <div class="card-thumb"><img src="model-55.jpg" alt="Fine-Art-Portrait in Beige"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-56.jpg" alt="Beauty-Nahaufnahme mit Zitrone"></div>
+      </div>
+      <div class="card" data-cat="lingerie">
+        <div class="card-thumb"><img src="model-57.jpg" alt="Schwarz-Weiß Fine-Art-Portrait im Harness"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-58.jpg" alt="Dynamische Studio-Pose in Schwarz"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-59.jpg" alt="Yoga-Editorial am Strand bei Sonnenuntergang"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-60.jpg" alt="Fine-Art-Portrait in Jeans und Bralette"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-61.jpg" alt="Portrait im gelben Blazer"></div>
+      </div>
+      <div class="card" data-cat="lingerie">
+        <div class="card-thumb"><img src="model-62.jpg" alt="Schwarz-Weiß Fine-Art-Portrait am Fenster"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-63.jpg" alt="Fine-Art-Portrait in Jeans und Bralette an der Wand"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-64.jpg" alt="Sitzende Fine-Art-Aufnahme in Jeans und Bralette"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-65.jpg" alt="Liegende Fine-Art-Aufnahme auf weißem Stoff"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-66.jpg" alt="Yoga-Brücke am Strand bei Sonnenuntergang"></div>
+      </div>
+      <div class="card" data-cat="fineart">
+        <div class="card-thumb"><img src="model-67.jpg" alt="Fine-Art-Portrait im Mohnfeld"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-68.jpg" alt="Schwarz-Weiß Portrait lachend"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-69.jpg" alt="Editorial am Strand in Orange"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-70.jpg" alt="Portrait im warmen Licht"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-71.jpg" alt="Schwarz-Weiß Moody-Portrait"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-72.jpg" alt="Editorial im schwarzen Kleid"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-73.jpg" alt="Portrait im gelben Blazer mit Perlenkette"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-74.jpg" alt="Portrait im gelben Blazer, Augen geschlossen"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-75.jpg" alt="Yoga-Kopfstand am Strand bei Sonnenuntergang"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-76.jpg" alt="Editorial an den Felsen im weißen Badeanzug"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-77.jpg" alt="Movement-Editorial am Wasser"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-78.jpg" alt="Bikini-Portrait am Meer"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-79.jpg" alt="Editorial auf der Treppe mit weißem Cape"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-80.jpg" alt="Editorial an den Felsen bei Sonnenuntergang"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-81.jpg" alt="Editorial an den Felsen im schwarzen Badeanzug"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-82.jpg" alt="Fine-Art-Aufnahme am See"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-83.jpg" alt="Editorial am Steg mit Sonnenbrille"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-84.jpg" alt="Portrait im gelben Blazer"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-85.jpg" alt="Moody-Portrait im Blazer"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-86.jpg" alt="Portrait mit Pferdeschwanz"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-87.jpg" alt="Schwarz-Weiß Portrait am Fenster"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-88.jpg" alt="Tanz-Editorial im weißen Top"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-89.jpg" alt="Schwarz-Weiß Profil-Portrait mit nassem Haar"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-90.jpg" alt="Editorial im Feld in Beige"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-91.jpg" alt="Yoga-Editorial am Strand bei Sonnenuntergang"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-92.jpg" alt="Yoga-Skorpion-Pose am Strand"></div>
+      </div>
+      <div class="card" data-cat="portrait">
+        <div class="card-thumb"><img src="model-93.jpg" alt="Schwarz-Weiß Portrait lachend"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-94.jpg" alt="Bikini-Editorial im Grünen"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-95.jpg" alt="Bikini-Editorial zwischen Palmen"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-96.jpg" alt="Yoga-Editorial am Strand in Rosa"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-97.jpg" alt="Yoga-Pose am Steg"></div>
+      </div>
+      <div class="card" data-cat="movement">
+        <div class="card-thumb"><img src="model-98.jpg" alt="Kopfstand in Jeans"></div>
+      </div>
+      <div class="card" data-cat="fineart">
+        <div class="card-thumb"><img src="model-99.jpg" alt="Fine-Art-Portrait im Mohnfeld"></div>
+      </div>
+      <div class="card" data-cat="bridal">
+        <div class="card-thumb"><img src="model-100.jpg" alt="Bridal-Editorial am Gartentor"></div>
+      </div>
+      <div class="card" data-cat="bridal">
+        <div class="card-thumb"><img src="model-101.jpg" alt="Bridal-Editorial mit Ringdetail"></div>
+      </div>
+      <div class="card" data-cat="beach">
+        <div class="card-thumb"><img src="model-102.jpg" alt="Bikini-Editorial an den Felsen"></div>
+      </div>
+      <div class="card" data-cat="editorial">
+        <div class="card-thumb"><img src="model-103.jpg" alt="Editorial in Beige mit Cowboystiefeln"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Paula Josie — Alle Rechte vorbehalten.
+  <div class="footer-links">
+    <a href="index.html#impressum">Impressum</a>
+    <a href="index.html#datenschutz">Datenschutz</a>
+    <a href="https://www.instagram.com/paula_josie_/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.card').forEach(function (el) {
+    el.classList.add('fade-in');
+  });
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '200px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(function (el) {
+    observer.observe(el);
+  });
+
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.card');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      cards.forEach(function (card) {
+        if (filter === 'all' || card.getAttribute('data-cat') === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
